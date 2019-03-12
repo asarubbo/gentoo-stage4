@@ -1,0 +1,11 @@
+mklabel gpt
+unit mib
+mkpart primary 1 3
+name 1 grub
+set 1 bios_grub on
+mkpart primary 3 100
+name 2 boot
+set 2 boot on
+mkpart primary 100 -1
+name 3 rootfs
+quit
