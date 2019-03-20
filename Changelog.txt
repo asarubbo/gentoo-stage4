@@ -1,0 +1,17 @@
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (20 Mar 2019)
+
+MD5SUM:
+stage4-hardened-20190312.tar.xz c9792d57435b412cad2be6e5779854ff
+stage4-standard-20190312.tar.xz cdee7c17099719c9106452888bf06246
+
+CHANGES:
+No changes, this is the first import of the archives/scripts
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.2.0 (Gentoo 8.2.0-r6 p1.7)
+glibc (Gentoo 2.27-r6 p3) 2.27
+binutils (Gentoo 2.30 p5) 2.30.0
+kernel-4.19.27-r1-gentoo
+
+#############################################################################
