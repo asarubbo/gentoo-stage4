@@ -114,5 +114,10 @@ chroot "${MOUNTPOINT}" /bin/bash -c 'echo "root:changeme999" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die
 
+if [ -f ./id_rsa.pub ]
+then
+	cp ./id_rsa.pub root/.ssh/authorized_keys || die
+fi
+
 echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
 
