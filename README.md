@@ -8,6 +8,7 @@
 - [Packages](#Packages)
 - [Services](#Services)
 - [Kernels](#Kernels)
+- [SSH access](#SSH-access)
 - [Future changes and releases](#Future-changes-and-releases)
 - [Changelog](#Changelog)
 - [What you need to do...](#What-you-need-to-do...)
@@ -77,6 +78,9 @@ sshd
 ## Kernels
 For the *stage4-hetzner-cloud* script a custom Monolithic Kernel is provided. It is based on the Hetzner Cloud hardware. If you need to include some other modules, the related Kernel config is provided, so you can start from there.  
 For the *stage4* script, a common genkernel-based kernel is provided.
+
+## SSH access
+If there is a file called id_rsa.pub in the same path where you are executing the stage4 script, this file will be copied as `/root/.ssh/authorized_keys`
 
 ## Future changes and releases
 The future changes in the stage4 can be relevant to:
