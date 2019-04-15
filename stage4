@@ -64,6 +64,7 @@ dd if=/dev/zero of="${DISK}" bs=512 count=1 conv=notrunc > /dev/null 2>&1 || die
 
 cd /tmp/
 curl -s -q -L "${PARTED_URL}" --output parted.txt || die
+sed "s:CHANGEME:${DISK}:" -i parted.txt || die
 parted -a optimal < ./parted.txt > /dev/null 2>&1 || die
 mkfs.ext4 -F "${BOOT}" > /dev/null 2>&1 || die
 mkfs.ext4 -F "${ROOT}" > /dev/null 2>&1 || die
