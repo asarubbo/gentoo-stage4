@@ -111,15 +111,15 @@ then
 	mkfs.fat -F32 "${ESP}" || die
 	mkdir -p "${MOUNTPOINT}"/boot/efi
 	mount "${ESP}" "${MOUNTPOINT}"/boot/efi || die
-	chroot "${MOUNTPOINT}" /bin/bash -c 'grub2-install --target=x86_64-efi --efi-directory=/boot/efi $DISK' || die
+	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-install --target=x86_64-efi --efi-directory=/boot/efi $DISK' || die
 elif [ "${TYPE}" = "bios" ]
 then
 	sed '/EFI/d' -i etc/fstab || die
-	chroot "${MOUNTPOINT}" /bin/bash -c 'grub2-install $DISK' || die
+	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-install $DISK' || die
 fi
 
-chroot "${MOUNTPOINT}" /bin/bash -c 'grub2-mkconfig -o /boot/grub/grub.cfg' || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'echo "root:changeme999" | chpasswd' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-mkconfig -o /boot/grub/grub.cfg' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:changeme999" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die
 

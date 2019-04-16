@@ -108,10 +108,10 @@ rm -fr "${MOUNTPOINT}"/boot/*genkernel* "${MOUNTPOINT}"/lib/modules/*
 export DISK="${DISK}"
 
 echo -ne "\n\nGRUB:\n"
-chroot "${MOUNTPOINT}" /bin/bash -c 'grub2-install $DISK' || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'grub2-mkconfig -o /boot/grub/grub.cfg' || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'rc-update add net.eth0 default' > /dev/null 2>&1 || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'echo "root:changeme999" | chpasswd' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-install $DISK' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-mkconfig -o /boot/grub/grub.cfg' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" rc-update add net.eth0 default' > /dev/null 2>&1 || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:changeme999" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die
 
