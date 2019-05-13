@@ -1,4 +1,25 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (13 May 2019)
+
+MD5SUM:
+stage4-hardened-20190512.tar.xz ec81085e0b8ce79e6bb73e1649afd93b
+stage4-standard-20190512.tar.xz f56c3c1c7778d275ba5d627d69fe2bbb
+
+CHANGES:
+- gcc update from 8.2.0-r6 to 8.3.0-r1
+- glibc update from 2.28-r5 to 2.28-r6
+- binutils update from 2.30-r4 to 2.31.1-r4
+- kernel update from 4.19.27-r1-gentoo to 4.19.37-gentoo
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.3.0 (Gentoo 8.3.0-r1 p1.1)
+glibc (Gentoo 2.28-r6 p9) 2.28
+binutils (Gentoo 2.31.1 p7) 2.31.1
+kernel-4.19.37-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (02 Apr 2019)
 
 MD5SUM:
