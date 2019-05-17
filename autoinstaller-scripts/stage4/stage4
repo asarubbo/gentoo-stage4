@@ -9,8 +9,8 @@ BASE_URL="https://github.com/asarubbo/gentoo-stage4/raw/master"
 ####### USER CONFIGS
 #TYPE="uefi"
 #TYPE="bios"
-#STAGE4_URL="${BASE_URL}/archives/standard/stage4-standard-20190512.tar.xz"
-#STAGE4_URL="${BASE_URL}/archives/hardened/stage4-hardened-20190512.tar.xz"
+#STAGE4_URL="${BASE_URL}/archives/standard/stage4-standard-20190516.tar.xz"
+#STAGE4_URL="${BASE_URL}/archives/hardened/stage4-hardened-20190516.tar.xz"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"

@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (17 May 2019)
+# This release contains the fix for MDS/ZombieLoad
+
+MD5SUM:
+stage4-hardened-20190516.tar.xz f7412d56b13de99ce918ff5dbb0d52ef
+stage4-standard-20190516.tar.xz 8f99ed3f71c5a55de346d61f412bb36d
+
+CHANGES:
+- glibc update from 2.28-r6 to 2.29-r2
+- kernel update from 4.19.37-gentoo to 4.19.43-gentoo
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.3.0 (Gentoo 8.3.0-r1 p1.1)
+glibc (Gentoo 2.29-r2 p3) 2.29
+binutils (Gentoo 2.31.1 p7) 2.31.1
+kernel-4.19.43-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (13 May 2019)
 
 MD5SUM:
