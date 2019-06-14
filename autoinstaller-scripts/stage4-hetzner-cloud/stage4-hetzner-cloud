@@ -4,11 +4,14 @@
 
 clear
 
-BASE_URL="https://github.com/asarubbo/gentoo-stage4/raw/master"
+GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 
 ####### USER CONFIGS
-#STAGE4_URL="${BASE_URL}/archives/standard/stage4-standard-20190516.tar.xz"
-#STAGE4_URL="${BASE_URL}/archives/hardened/stage4-hardened-20190516.tar.xz"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20190516.tar.xz"
+#MD5SUM="8f99ed3f71c5a55de346d61f412bb36d"
+
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20190516.tar.xz"
+#MD5SUM="f7412d56b13de99ce918ff5dbb0d52ef"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -16,12 +19,12 @@ BOOT="/dev/sda2"
 ROOT="/dev/sda3"
 ##########
 
-LOCALTIME_URL="${BASE_URL}/misc/CET"
-PARTED_URL="${BASE_URL}/misc/parted.txt"
+LOCALTIME_URL="${GITHUB}/misc/CET"
+PARTED_URL="${GITHUB}/misc/parted.txt"
 MOUNTPOINT="/mnt/gentoo"
 
 echo -ne "\nBefore to run this script you need to configure the basics in the script itself\n\n"
-echo "This script will COMPLETELY erase your disk $DISK (see line 53)"
+echo "This script will COMPLETELY erase your disk $DISK (see line 56)"
 read -r -p "Are you sure? [y/N] " RESPONSE
 RESPONSE=${RESPONSE,,}
 if [[ ! "$RESPONSE" =~ ^(yes|y)$ ]]
@@ -32,7 +35,7 @@ fi
 
 if [ -z "${STAGE4_URL}" ]
 then
-	echo "You need to delete the comment from one of the available STAGE4_URL and relaunch the script"
+	echo "You need to delete the comment from one of the available STAGE4_URL and its MD5SUM and relaunch the script"
 	exit 1
 fi
 
@@ -66,6 +69,13 @@ cd "${MOUNTPOINT}" || die
 echo "DOWNLOAD IN PROGRESS..."
 curl -s -q -L "${STAGE4_URL}" --output stage4.tar.xz || die
 echo "DOWNLOAD DONE..."
+echo "MD5SUM CHECK IN PROGRESS..."
+if [ "$( md5sum stage4.tar.xz | awk '{print $1}' )" != "${MD5SUM}" ]
+then
+	echo "Something wrong with the MD5SUM"
+	exit 1
+fi
+echo "MD5SUM CHECK DONE..."
 echo "DECOMPRESSION IN PROGRESS..."
 tar -xJpf stage4.tar.xz || die
 echo "DECOMPRESSION DONE..."

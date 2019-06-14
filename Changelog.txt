@@ -1,4 +1,16 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (14 Jun 2019)
+
+The archives are not anymore distributed on github.
+This happened because of a 1GB limit for git-lfs.
+Since there is a track also for the deleted archives, has become a nightmare manage the archives on github.
+The archives are now hosted on the Gentoo Infrastructure.
+In the autoinstaller script there is an additional check about the md5sum, so you can stay safe!
+If the check will not pass, someone has modified the archive, so please abort immediately.
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (17 May 2019)
 # This release contains the fix for MDS/ZombieLoad
 
