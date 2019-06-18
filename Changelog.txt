@@ -1,4 +1,23 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (18 Jun 2019)
+# This release contains the update to 17.1 profile
+
+MD5SUM:
+stage4-hardened-20190618.tar.xz 2add6d57fed429eed39dedc2fdc3bfff
+stage4-standard-20190618.tar.xz 1f372b8932ba134b967b98801d325f0f
+
+CHANGES:
+- profile update from 17.0 to 17.1
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.3.0 (Gentoo 8.3.0-r1 p1.1)
+glibc (Gentoo 2.29-r2 p3) 2.29
+binutils (Gentoo 2.31.1 p7) 2.31.1
+kernel-4.19.43-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (14 Jun 2019)
 
 The archives are not anymore distributed on github.
