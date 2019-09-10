@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (10 Sep 2019)
+# This release contains the update to CVE-2019-15902 (Spectre backporting error)
+
+MD5SUM:
+stage4-hardened-20190909.tar.xz 287e201e9852950372940d6d9e6995d4
+stage4-standard-20190909.tar.xz 3148b86c2706c2afc85b92ecdbaff14a
+
+CHANGES:
+- kernel update from 4.19.43-gentoo to 4.19.71-gentoo
+- binutils update from 2.31.1-r6 to 2.32-r1
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.3.0 (Gentoo 8.3.0-r1 p1.1)
+glibc (Gentoo 2.29-r2 p3) 2.29
+binutils (Gentoo 2.32 p2) 2.32.0
+kernel-4.19.71-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (18 Jun 2019)
 # This release contains the update to 17.1 profile
 
