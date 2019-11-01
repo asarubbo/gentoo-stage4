@@ -56,7 +56,9 @@ app-misc/delay
 app-misc/tmux
 app-portage/eix
 app-portage/gentoolkit
-net-misc/ntpsec
+dev-vcs/git
+net-misc/chrony
+sys-apps/haveged
 sys-boot/grub
 sys-kernel/linux-firmware
 sys-power/acpid
@@ -65,14 +67,19 @@ sys-process/htop
 ~~~~
 
 ## Services
-Service added to default runlevel:
+Services added to default runlevel:
 ~~~~
 syslog-ng
 acpid
 cronie
 net.eth0 (only for stage4-hetzner-cloud)
-ntp
+chronyd
 sshd
+~~~~
+
+Service added to the boot runlevel:
+~~~~
+haveged
 ~~~~
 
 ## Kernels
