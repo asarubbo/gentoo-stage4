@@ -1,4 +1,23 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (1 Nov 2019)
+
+MD5SUM:
+stage4-hardened-20191028.tar.xz a83365b0500e8814c2a3143d02aa09e5
+stage4-standard-20191028.tar.xz d28c1e5f3e43f8c9a7fe61a9caa36d7e
+
+CHANGES:
+- chrony replaces ntpsec
+- added haveged at boot runlevel
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 8.3.0 (Gentoo 8.3.0-r1 p1.1)
+glibc (Gentoo 2.29-r2 p3) 2.29
+binutils (Gentoo 2.32 p2) 2.32.0
+kernel-4.19.71-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (10 Sep 2019)
 # This release contains the update to CVE-2019-15902 (Spectre backporting error)
 
