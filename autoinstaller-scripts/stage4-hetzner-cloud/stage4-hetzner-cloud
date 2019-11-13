@@ -23,9 +23,10 @@ ROOT="/dev/sda3"
 LOCALTIME_URL="${GITHUB}/misc/CET"
 PARTED_URL="${GITHUB}/misc/parted.txt"
 MOUNTPOINT="/mnt/gentoo"
+INITIAL_PWD="$( pwd )"
 
 echo -ne "\nBefore to run this script you need to configure the basics in the script itself\n\n"
-echo "This script will COMPLETELY erase your disk $DISK (see line 56)"
+echo "This script will COMPLETELY erase your disk $DISK (see line 58)"
 read -r -p "Are you sure? [y/N] " RESPONSE
 RESPONSE=${RESPONSE,,}
 if [[ ! "$RESPONSE" =~ ^(yes|y)$ ]]
@@ -126,9 +127,9 @@ chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "
 
 rm -fr root/.ssh/authorized_keys || die
 
-if [ -f ./id_rsa.pub ]
+if [ -f "${INITIAL_PWD}"/id_rsa.pub ]
 then
-	cp ./id_rsa.pub root/.ssh/authorized_keys || die
+	cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die
 fi
 
 echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
