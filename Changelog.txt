@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (26 Nov 2019)
+
+MD5SUM:
+stage4-hardened-20191125.tar.xz 6a31baedfe16dca2623593a4bf7e6d4d
+stage4-standard-20191125.tar.xz a8727757cfc26f14128a2ce32f691544
+
+CHANGES:
+- the generic kernel is now form sys-kernel/gentoo-sources-image
+- gcc update from 8.3.0-r1 to 9.2.0-r2
+- kernel update from 4.19.71-gentoo to 4.19.86-gentoo
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.2.0 (Gentoo 9.2.0-r2 p3)
+glibc (Gentoo 2.29-r2 p3) 2.29
+binutils (Gentoo 2.32 p2) 2.32.0
+kernel-4.19.86-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (1 Nov 2019)
 
 MD5SUM:

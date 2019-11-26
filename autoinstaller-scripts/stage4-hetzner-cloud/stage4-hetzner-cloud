@@ -9,10 +9,10 @@ DATE="20191028"
 
 ####### USER CONFIGS
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
-#MD5SUM="d28c1e5f3e43f8c9a7fe61a9caa36d7e"
+#MD5SUM="a8727757cfc26f14128a2ce32f691544"
 
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-"${DATE}".tar.xz"
-#MD5SUM="a83365b0500e8814c2a3143d02aa09e5"
+#MD5SUM="6a31baedfe16dca2623593a4bf7e6d4d"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
