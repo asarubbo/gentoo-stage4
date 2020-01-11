@@ -1,4 +1,22 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (11 Jan 2020)
+
+MD5SUM:
+stage4-hardened-20191125.tar.xz 6046b6ec4b45ddeb1bb9634ab1d4bd40
+stage4-standard-20191125.tar.xz ef0fc484aeaba34ab72847410e82a263
+
+CHANGES:
+- glibc update from 2.29-r2 to 2.29-r7
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.2.0 (Gentoo 9.2.0-r2 p3)
+glibc (Gentoo 2.29-r7 p8) 2.29
+binutils (Gentoo 2.32 p2) 2.32.0
+kernel-4.19.86-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (26 Nov 2019)
 
 MD5SUM:
