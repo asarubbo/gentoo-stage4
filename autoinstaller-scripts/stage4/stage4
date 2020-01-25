@@ -5,17 +5,17 @@
 clear
 
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
-DATE="20200111"
+DATE="20200125"
 
 ####### USER CONFIGS
 #TYPE="uefi"
 #TYPE="bios"
 
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
-#MD5SUM="ef0fc484aeaba34ab72847410e82a263"
+#MD5SUM="7ac3a736dd2cfc55a09b8779ff35f75d"
 
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-"${DATE}".tar.xz"
-#MD5SUM="6046b6ec4b45ddeb1bb9634ab1d4bd40"
+#MD5SUM="4adcd41d108049978870d1139d690c01"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -122,14 +122,14 @@ then
 	mkfs.fat -F32 "${ESP}" || die
 	mkdir -p "${MOUNTPOINT}"/boot/efi
 	mount "${ESP}" "${MOUNTPOINT}"/boot/efi || die
-	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-install --target=x86_64-efi --efi-directory=/boot/efi $DISK' || die
+	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install --target=x86_64-efi --efi-directory=/boot/efi $DISK' || die
 elif [ "${TYPE}" = "bios" ]
 then
 	sed '/EFI/d' -i etc/fstab || die
-	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-install $DISK' || die
+	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install $DISK' || die
 fi
 
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub2-mkconfig -o /boot/grub/grub.cfg' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-mkconfig -o /boot/grub/grub.cfg' || die
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:changeme999" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die

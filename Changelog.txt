@@ -1,9 +1,28 @@
+
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (25 Jan 2020)
+
+MD5SUM:
+stage4-hardened-20200125.tar.xz 4adcd41d108049978870d1139d690c01
+stage4-standard-20200125.tar.xz 7ac3a736dd2cfc55a09b8779ff35f75d
+
+CHANGES:
+- grub is not anymore multislot
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.2.0 (Gentoo 9.2.0-r2 p3)
+glibc (Gentoo 2.29-r7 p8) 2.29
+binutils (Gentoo 2.32 p2) 2.32.0
+kernel-4.19.86-gentoo
+
+#############################################################################
+
 #############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (11 Jan 2020)
 
 MD5SUM:
-stage4-hardened-20191125.tar.xz 6046b6ec4b45ddeb1bb9634ab1d4bd40
-stage4-standard-20191125.tar.xz ef0fc484aeaba34ab72847410e82a263
+stage4-hardened-20200111.tar.xz 6046b6ec4b45ddeb1bb9634ab1d4bd40
+stage4-standard-20200111.tar.xz ef0fc484aeaba34ab72847410e82a263
 
 CHANGES:
 - glibc update from 2.29-r2 to 2.29-r7
