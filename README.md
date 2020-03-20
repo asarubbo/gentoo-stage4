@@ -21,10 +21,10 @@ The idea comes from the fact that some Hosting Providers (like Hetzner) do not p
 ## Stage4 TYPES
 I'm providing two types of stage4:
 - ***Standard***  
- It uses the standard profile (default/linux/amd64/17.0). Since nowadays the compiler forces pie and ssp, this stage4 aims to avoid compiling with ssp/pie/relro and other protections, **to speed-up as much as possible** where the protection flags are not needed, otherwise it would look very similar to the hardened stage4.  
+ It uses the standard profile (default/linux/amd64/17.1). Since nowadays the compiler forces pie and ssp, this stage4 aims to avoid compiling with ssp/pie/relro and other protections, **to speed-up as much as possible** where the protection flags are not needed, otherwise it would look very similar to the hardened stage4.  
  If you are looking for something compiled with hardened protections then look at the Hardened stage.
 - ***Hardened***  
- It uses the hardened profile (default/linux/amd64/17.0/hardened) without any modifications, so all protections are enabled.
+ It uses the hardened profile (default/linux/amd64/17.1/hardened) without any modifications, so all protections are enabled.
 
 The package `app-admin/checksec` provides a script that can help you understand the status of the compiled binaries:
 ~~~~
