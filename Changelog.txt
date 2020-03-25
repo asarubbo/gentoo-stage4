@@ -1,3 +1,21 @@
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (25 Mar 2020)
+
+MD5SUM:
+stage4-hardened-20200125.tar.xz acd6448c554bb84171ef14ac96e01310
+stage4-standard-20200125.tar.xz 3422d20b705ba3c762ae6a76be2598a4
+
+CHANGES:
+- move package.keywords to package.accept_keywords
+- binutils update from 2.32-r1 to 2.33.1-r1
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.2.0 (Gentoo 9.2.0-r2 p3)
+glibc (Gentoo 2.29-r7 p8) 2.29
+binutils (Gentoo 2.33.1 p2) 2.33.1
+kernel-4.19.86-gentoo
+
+#############################################################################
 
 #############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (25 Jan 2020)

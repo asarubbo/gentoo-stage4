@@ -11,11 +11,11 @@ DATE="20200125"
 #TYPE="uefi"
 #TYPE="bios"
 
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
-#MD5SUM="7ac3a736dd2cfc55a09b8779ff35f75d"
-
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-"${DATE}".tar.xz"
-#MD5SUM="4adcd41d108049978870d1139d690c01"
+#MD5SUM="acd6448c554bb84171ef14ac96e01310"
+
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
+#MD5SUM="3422d20b705ba3c762ae6a76be2598a4"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
