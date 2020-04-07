@@ -11,7 +11,8 @@
 - [SSH access](#SSH-access)
 - [Future changes and releases](#Future-changes-and-releases)
 - [Changelog](#Changelog)
-- [What you need to do...](#What-you-need-to-do...)
+- [Google Cloud (GCP)](#Google-Cloud-GCP)
+- [What you need to do...](#What-you-need-to-do)
 
 ## Idea
 All of us know that a Gentoo installation takes some time compared to any other distro. For the last few years, I have been installing via an auto-installer script which takes a few minutes, but on each installation does some repetitive operations, so why not have a tarball that contains the basics I need to add on each installation?
@@ -106,11 +107,28 @@ In any case you can install the stage4 **anytime** and update to the latest stab
 ## Changelog
 To avoid navigating and searching the git history, a plaintext Changelog is provided, which will summarize and track changes between releases.
 
+## Google Cloud (GCP)
+Google Cloud does not offer a rescue system, so in order to use this script, you have to:
+- Create an empty disk/volume;
+- Install a new virtual machine with a Linux-based OS (that you will use like a rescue);
+- Attach the disk/volume on the freshly-installed OS;
+- Run the `stage4` script;  
+NOTE:
+You must edit the DISK variable and point it to the attached disk/volume. A working config could be:
+~~~~
+DISK="/dev/sdb"
+ESP="/dev/sda1"
+BOOT="/dev/sda2"
+ROOT="/dev/sda3"
+~~~~
+
 ## What you need to do...
 If you are using something from this repository, I appreciate if you "Star" the repository. This will give me an idea of how many people are using this stuff and, consequently, how much effort I need to put in to maintain the project in a good state.
 
 ---
 
 \# Gentoo hetzner cloud  
+\# Gentoo Google Cloud
+\# Gentoo gcp
 \# Gentoo stage4  
 \# Gentoo cloud  
