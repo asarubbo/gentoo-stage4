@@ -1,4 +1,21 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (23 Jun 2020)
+
+MD5SUM:
+stage4-hardened-20200623.tar.xz 474eae71893bfb8dc7786a37c14d9988
+stage4-standard-20200623.tar.xz 613a4a077e2fb02b1d6623e659708bfa
+
+CHANGES:
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.3.0 (Gentoo 9.3.0 p2)
+glibc (Gentoo 2.30-r8 p10) 2.30
+binutils (Gentoo 2.33.1 p2) 2.33.1
+kernel-4.19.86-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (25 Apr 2020)
 
 MD5SUM:
