@@ -1,4 +1,26 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (17 Feb 2021)
+
+MD5SUM:
+stage4-hardened-20210217.tar.xz 6cd886edd96872c681e5047d9ca04466
+stage4-standard-20210217.tar.xz 110c4c8bbf2941e6fc59b30e4a121f9a
+
+CHANGES:
+- gcc update from 9.3.0-r1 to 9.3.0-r2
+- glibc update from 2.31-r6 to 2.32-r6
+- binutils update from 2.34-r2 to 2.35.1-r1
+- python target update from 3.6 to 3.8
+- kernel update from 4.19.86 to 4.19.174
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 9.3.0 (Gentoo 9.3.0-r2 p4)
+glibc (Gentoo 2.32-r6 p5) 2.32
+binutils (Gentoo 2.35.1 p2) 2.35.1
+kernel-4.19.174-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (28 Oct 2020)
 
 MD5SUM:

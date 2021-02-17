@@ -5,17 +5,17 @@
 clear
 
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
-DATE="20201028"
+DATE="20210217"
 
 ####### USER CONFIGS
 #TYPE="uefi"
 #TYPE="bios"
 
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-"${DATE}".tar.xz"
-#MD5SUM="2e9850d7103296958d9c6d3de3aeded1"
+#MD5SUM="6cd886edd96872c681e5047d9ca04466"
 
 #STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
-#MD5SUM="62398b98b27c46b36c39c6be1d48e117"
+#MD5SUM="110c4c8bbf2941e6fc59b30e4a121f9a"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
