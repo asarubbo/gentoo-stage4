@@ -132,5 +132,6 @@ then
 	cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die
 fi
 
-echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
+echo -ne "LSPCI -k:\n$( lspci -k | grep "Kernel\ driver" | sort | uniq )\n\nLSMOD:\n$( lsmod )\n" > "${MOUNTPOINT}"/root/.modules_info
 
+echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
