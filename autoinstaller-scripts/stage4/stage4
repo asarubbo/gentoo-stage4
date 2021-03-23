@@ -5,17 +5,13 @@
 clear
 
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
-DATE="20210217"
 
 ####### USER CONFIGS
 #TYPE="uefi"
 #TYPE="bios"
 
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-"${DATE}".tar.xz"
-#MD5SUM="6cd886edd96872c681e5047d9ca04466"
-
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-"${DATE}".tar.xz"
-#MD5SUM="110c4c8bbf2941e6fc59b30e4a121f9a"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20210323.tar.xz ; MD5SUM="da7ef360945e5413614e228b3709f5ca"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20210323.tar.xz ; MD5SUM="4a6ac918f63d7cd97166aeaa93b05ea6"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -97,10 +93,6 @@ rm -fr stage4.tar.xz || die
 sed "s:j4:j$( nproc ):" -i etc/portage/make.conf
 sed "s:BOOT:$BOOT:" -i etc/fstab || die
 sed "s:ROOT:$ROOT:" -i etc/fstab etc/default/grub || die
-if [ ! -z "$( lsblk --discard "${DISK}" | awk '{print $3}' | grep "0B" )" ]
-then
-	sed "s:,discard::g" -i etc/fstab || die
-fi
 ####
 
 mkdir dev proc run sys tmp > /dev/null 2>&1

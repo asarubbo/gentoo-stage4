@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (23 Mar 2021)
+
+MD5SUM:
+stage4-hardened-20210323.tar.xz da7ef360945e5413614e228b3709f5ca
+stage4-standard-20210323.tar.xz 4a6ac918f63d7cd97166aeaa93b05ea6
+
+CHANGES:
+- gcc update from 9.3.0-r2 to 10.2.0-r5
+- glibc update from 2.32-r6 to 2.32-r7
+- removed discard option from fstab
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 10.2.0 (Gentoo 10.2.0-r5 p6)
+glibc (Gentoo 2.32-r7 p6) 2.32
+binutils (Gentoo 2.35.1 p2) 2.35.1
+kernel-4.19.174-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (17 Feb 2021)
 
 MD5SUM:
