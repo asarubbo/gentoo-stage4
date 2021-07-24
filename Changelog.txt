@@ -1,4 +1,23 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (24 Jul 2021)
+
+MD5SUM:
+stage4-hardened-20210724.tar.xz 3c560d971db6f1ea423b71c0d6517b9d
+stage4-standard-20210724.tar.xz 4e79a2200399cf28a5c14d9a2eaac398
+
+CHANGES:
+- gcc update from 10.2.0-r5 to 10.3.0-r2
+- glibc update from 2.32-r7 to 2.33-r1
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 10.3.0 (Gentoo 10.3.0-r2 p3)
+glibc (Gentoo 2.33-r1 p4) 2.33
+binutils (Gentoo 2.35.2 p1) 2.35.2
+kernel-4.19.174-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (23 Mar 2021)
 
 MD5SUM:
