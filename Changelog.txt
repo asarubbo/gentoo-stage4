@@ -1,4 +1,23 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (22 Oct 2021)
+
+MD5SUM:
+stage4-hardened-20211022.tar.xz e372ef3e9098ce830911c5251a6ba250
+stage4-standard-20211022.tar.xz 8b6c1febc5aa6eb37dc2dacaebba8b1c
+
+CHANGES:
+- gcc update from 10.3.0-r2 to 11.2.0
+- binutils update from 2.35.2 to 2.37_p1
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 11.2.0 (Gentoo 11.2.0 p1)
+glibc (Gentoo 2.33-r1 p4) 2.33
+binutils (Gentoo 2.37_p1 p0) 2.37
+kernel-4.19.174-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (24 Jul 2021)
 
 MD5SUM:
