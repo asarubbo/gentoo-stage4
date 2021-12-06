@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (06 Dec 2021)
+
+MD5SUM:
+stage4-hardened-20211206.tar.xz 1e9a9fc82195ff60fe85a7c603a2d287
+stage4-standard-20211206.tar.xz 74a7e3b1c0e086a30fdbfc8bf7b3dcbe
+
+CHANGES:
+- glibc update from 2.33-r1 to 2.33-r7
+- libxcrypt migration
+- udev migration
+
+TOOLCHAIN/KERNEL VERSIONS:
+gcc version 11.2.0 (Gentoo 11.2.0 p1)
+glibc (Gentoo 2.33-r7 p6) 2.33
+binutils (Gentoo 2.37_p1 p0) 2.37
+kernel-4.19.174-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (22 Oct 2021)
 
 MD5SUM:
