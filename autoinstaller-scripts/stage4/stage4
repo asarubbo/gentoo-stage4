@@ -10,8 +10,8 @@ GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 #TYPE="uefi"
 #TYPE="bios"
 
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20211206.tar.xz" ; MD5SUM="1e9a9fc82195ff60fe85a7c603a2d287"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20211206.tar.xz" ; MD5SUM="74a7e3b1c0e086a30fdbfc8bf7b3dcbe"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20220321.tar.xz" ; MD5SUM="497694c0c0c3a8d8b11c9f1fee0d52ce"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20220321.tar.xz" ; MD5SUM="856e4693c30bf101c9e111ae60c77cc8"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -122,7 +122,7 @@ then
 fi
 
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-mkconfig -o /boot/grub/grub.cfg' || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:changeme999" | chpasswd' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:ChangeMe1999" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die
 
