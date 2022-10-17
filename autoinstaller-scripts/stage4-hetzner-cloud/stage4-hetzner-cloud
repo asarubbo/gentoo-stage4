@@ -7,8 +7,8 @@ clear
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 
 ####### USER CONFIGS
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20220321.tar.xz" ; MD5SUM="497694c0c0c3a8d8b11c9f1fee0d52ce"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20220321.tar.xz" ; MD5SUM="856e4693c30bf101c9e111ae60c77cc8"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20221017.tar.xz" ; MD5SUM="ed456edca0996a53b58915be89848619"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20221017.tar.xz" ; MD5SUM="6d6b2a161d32c25295ee905778427dab"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -105,7 +105,7 @@ mount --rbind /sys "${MOUNTPOINT}"/sys || die
 mount --rbind /dev "${MOUNTPOINT}"/dev || die
 
 # KERNEL
-rm -fr "${MOUNTPOINT}"/boot/*genkernel* "${MOUNTPOINT}"/lib/modules/*
+rm -fr "${MOUNTPOINT}"/boot/*gentoo-sources-image* "${MOUNTPOINT}"/lib/modules/*
 
 # CHROOT COMMANDS
 
