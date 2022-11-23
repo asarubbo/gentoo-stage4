@@ -113,7 +113,7 @@ if [ "${TYPE}" = "uefi" ]
 then
 	mkfs.fat -F32 "${ESP}" || die
 	mkdir -p "${MOUNTPOINT}"/boot/efi
-	mount "${ESP}" "${MOUNTPOINT}"/boot/efi || die
+	mount -t vfat "${ESP}" "${MOUNTPOINT}"/boot/efi || die
 	chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install --target=x86_64-efi --efi-directory=/boot/efi $DISK' || die
 elif [ "${TYPE}" = "bios" ]
 then
