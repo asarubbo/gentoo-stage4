@@ -14,6 +14,7 @@ DISK="/dev/sda"
 ESP="/dev/sda1"
 BOOT="/dev/sda2"
 ROOT="/dev/sda3"
+ROOT_PASSWORD="ChangeMe1999"
 ##########
 
 LOCALTIME_URL="${GITHUB}/misc/CET"
@@ -115,7 +116,7 @@ echo -ne "\n\nGRUB:\n"
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install $DISK' || die
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-mkconfig -o /boot/grub/grub.cfg' || die
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" rc-update add net.eth0 default' > /dev/null 2>&1 || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:ChangeMe1999" | chpasswd' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:$ROOT_PASSWORD" | chpasswd' || die
 
 rm -fr root/.ssh/authorized_keys || die
 
