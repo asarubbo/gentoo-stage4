@@ -14,9 +14,13 @@ DISK="/dev/sda"
 ESP="/dev/sda1"
 BOOT="/dev/sda2"
 ROOT="/dev/sda3"
-ROOT_PASSWORD="ChangeMe1999"
+ROOTFS_MKFS_COMMAND=" -t btrfs -f "  #use BTRFS, force formatting
+ROOT_PASSWORD=`cat /dev/urandom | tr -dc a-zA-Z0-9 | fold -w 14 | head -n 1`
+LOG_FILE="/dev/null"
+#LOG_FILE="log.txt" # to enable logging to file
 ##########
 
+echo "Detailed output will be sent to ${LOG_FILE}"
 LOCALTIME_URL="${GITHUB}/misc/CET"
 PARTED_URL="${GITHUB}/misc/parted.txt"
 MOUNTPOINT="/mnt/gentoo"
@@ -28,51 +32,54 @@ read -r -p "Are you sure? [y/N] " RESPONSE
 RESPONSE=${RESPONSE,,}
 if [[ ! "$RESPONSE" =~ ^(yes|y)$ ]]
 then
-	echo "Aborting..."
-	exit 1
+        echo "Aborting..."
+        exit 1
 fi
 
 if [ -z "${STAGE4_URL}" ]
 then
-	echo "You need to delete the comment from one of the available STAGE4_URL and its MD5SUM and relaunch the script"
-	exit 1
+        echo "You need to delete the comment from one of the available STAGE4_URL and its MD5SUM and relaunch the script"
+        exit 1
 fi
 
 function die () {
-	if [ "${?}" != "0" ]
-	then
-		echo "Something went wrong; aborting..."
-		exit 1
-	fi
+        if [ "${?}" != "0" ]
+        then
+                echo "Something went wrong; aborting... $1"
+                exit 1
+        fi
 }
 
 # DATE/NTP
 rm -fr /etc/localtime
 curl -s -q -L "${LOCALTIME_URL}" --output /etc/localtime
-ntpdate -b time.ien.it > /dev/null 2>&1 && hwclock -w
+ntpdate -b time.ien.it > ${LOG_FILE} 2>&1 && hwclock -w
 
-# CLEAN THE DISK
-dd if=/dev/zero of="${DISK}" bs=512 count=1 conv=notrunc > /dev/null 2>&1 || die
+echo "CLEAN THE DISK"
+dd if=/dev/zero of="${DISK}" bs=512 count=1 conv=notrunc >> ${LOG_FILE} 2>&1 || die "Can not clean disk"
 
 cd /tmp/
 curl -s -q -L "${PARTED_URL}" --output parted.txt || die
 sed "s:CHANGEME:${DISK}:" -i parted.txt || die
-parted -a optimal < ./parted.txt > /dev/null 2>&1 || die
-mkfs.ext4 -F "${BOOT}" > /dev/null 2>&1 || die
-mkfs.ext4 -F "${ROOT}" > /dev/null 2>&1 || die
+parted -a optimal < ./parted.txt >> ${LOG_FILE} 2>&1 || die
+echo "MAKE FILESYSTEMS"
+echo "mkfs.ext4 -F ${BOOT} >> ${LOG_FILE} 2>&1"
+mkfs.ext4 -F "${BOOT}" >> ${LOG_FILE} 2>&1 || die "mkfs for ${BOOT}"
+echo "mkfs ${ROOTFS_MKFS_COMMAND}  ${ROOT} >> ${LOG_FILE} 2>&1"
+mkfs ${ROOTFS_MKFS_COMMAND}   "${ROOT}" >> ${LOG_FILE} 2>&1 || die "mkfs for ${ROOT}"
 mkdir -p "${MOUNTPOINT}" || die
-mount "${ROOT}" "${MOUNTPOINT}" || die
+mount "${ROOT}" "${MOUNTPOINT}" || die "mount for ${ROOT}"
 mkdir -p "${MOUNTPOINT}"/boot || die
-mount "${BOOT}" "${MOUNTPOINT}"/boot || die
+mount "${BOOT}" "${MOUNTPOINT}"/boot || die "mount for ${BOOT}"
 cd "${MOUNTPOINT}" || die
 echo "DOWNLOAD IN PROGRESS..."
-curl -s -q -L "${STAGE4_URL}" --output stage4.tar.xz || die
+curl  -q -L "${STAGE4_URL}" --output stage4.tar.xz || die
 echo "DOWNLOAD DONE..."
 echo "MD5SUM CHECK IN PROGRESS..."
 if [ "$( md5sum stage4.tar.xz | awk '{print $1}' )" != "${MD5SUM}" ]
 then
-	echo "Something wrong with the MD5SUM"
-	exit 1
+        echo "Something wrong with the MD5SUM"
+        exit 1
 fi
 echo "MD5SUM CHECK DONE..."
 echo "DECOMPRESSION IN PROGRESS..."
@@ -100,7 +107,7 @@ routes_eth0="172.31.1.1 scope link
 default via 172.31.1.1"
 EOF
 
-mkdir dev proc run sys tmp > /dev/null 2>&1
+mkdir dev proc run sys tmp >> ${LOG_FILE} 2>&1
 mount -t proc proc "${MOUNTPOINT}"/proc || die
 mount --rbind /sys "${MOUNTPOINT}"/sys || die
 mount --rbind /dev "${MOUNTPOINT}"/dev || die
@@ -115,22 +122,27 @@ export DISK="${DISK}"
 echo -ne "\n\nGRUB:\n"
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install $DISK' || die
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-mkconfig -o /boot/grub/grub.cfg' || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" rc-update add net.eth0 default' > /dev/null 2>&1 || die
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:$ROOT_PASSWORD" | chpasswd' || die
+chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" rc-update add net.eth0 default' >> ${LOG_FILE} 2>&1 || die
+echo "root:{$ROOT_PASSWORD}" | chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" chpasswd' >> ${LOG_FILE} || die
 
 rm -fr root/.ssh/authorized_keys || die
 
 if [ -f "${INITIAL_PWD}"/id_rsa.pub ]
 then
-	cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die
+        echo "Copying public key from id_rsa.pub to target"
+        cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die
 else
-	if [ -f "${INITIAL_PWD}"/.ssh/authorized_keys ]
-	then
-		cp "${INITIAL_PWD}"/.ssh/authorized_keys root/.ssh/authorized_keys || die
-	fi
+        if [ -f "${INITIAL_PWD}"/.ssh/authorized_keys ]
+        then
+            echo "Copying authorized keys to target"
+            cp "${INITIAL_PWD}"/.ssh/authorized_keys root/.ssh/authorized_keys || die
+        else
+            echo "No ssh keys found, you will have to set it up manually"
+        fi        
 fi
 
 
 echo -ne "LSPCI -k:\n$( lspci -k | grep "Kernel\ driver" | sort | uniq )\n\nLSMOD:\n$( lsmod )\n" > "${MOUNTPOINT}"/root/.modules_info
 
+echo "Your root password was set to ${ROOT_PASSWORD} "
 echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
