@@ -123,7 +123,13 @@ rm -fr root/.ssh/authorized_keys || die
 if [ -f "${INITIAL_PWD}"/id_rsa.pub ]
 then
 	cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die
+else
+	if [ -f "${INITIAL_PWD}"/.ssh/authorized_keys ]
+	then
+		cp "${INITIAL_PWD}"/.ssh/authorized_keys root/.ssh/authorized_keys || die
+	fi
 fi
+
 
 echo -ne "LSPCI -k:\n$( lspci -k | grep "Kernel\ driver" | sort | uniq )\n\nLSMOD:\n$( lsmod )\n" > "${MOUNTPOINT}"/root/.modules_info
 
