@@ -1,4 +1,24 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (05 May 2023)
+
+MD5SUM:
+stage4-hardened-20230505.tar.xz cafe73489c4ef5719004546f92d81f32
+stage4-standard-20230505.tar.xz a6f1d0c2c066eb00cb69df6cfcc856de
+
+CHANGES:
+- glibc update from 2.36-r5 to 2.36-r7
+- gcc update from 12.2.1_p20230121-r1 to 12.2.1_p20230428-r1
+- binutils update from 2.39-r4 to 2.39-r5
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 12.2.1 20230428 (Gentoo 12.2.1_p20230428-r1 p2)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.36-r7 p9) 2.36
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.39 p6) 2.39.0
+kernel-4.19.235-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (06 Feb 2023)
 
 MD5SUM:
