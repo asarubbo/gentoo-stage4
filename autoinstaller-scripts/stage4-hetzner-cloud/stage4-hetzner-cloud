@@ -14,6 +14,10 @@ DISK="/dev/sda"
 ESP="/dev/sda1"
 BOOT="/dev/sda2"
 ROOT="/dev/sda3"
+
+ROOTFS_MKFS_COMMAND=" -t btrfs -f "  #use BTRFS, force formatting
+#ROOTFS_MKFS_COMMAND=" -t ext4 -f "  #use ext4, force formatting
+ROOT_PASSWORD=`cat /dev/urandom | tr -dc a-zA-Z0-9 | fold -w 14 | head -n 1`
 ########## END USER CONFIGS
 
 LOCALTIME_URL="${GITHUB}/misc/CET"
@@ -27,48 +31,49 @@ read -r -p "Are you sure? [y/N] " RESPONSE
 RESPONSE=${RESPONSE,,}
 if [[ ! "$RESPONSE" =~ ^(yes|y)$ ]]
 then
-	echo "There was no confirmation, so aborting..."
-	exit 1
+    echo "There was no confirmation, so aborting..."
+    exit 1
 fi
 
 if [ -z "${STAGE4_URL}" ]
 then
-	echo "You need to delete the comment from one of the available STAGE4_URL and its MD5SUM and relaunch the script"
-	exit 1
+        echo "You need to delete the comment from one of the available STAGE4_URL and its MD5SUM and relaunch the script"
+        exit 1
 fi
 
 function die () {
-	if [ "${?}" != "0" ]
-	then
-		test -n "${1}" && echo "${1}"
-		echo -ne "\n\nOne of the commands failed; aborting...\n\n"
-		exit 1
-	fi
+        if [ "${?}" != "0" ]
+        then
+                echo "Something went wrong; aborting... $1"
+                exit 1
+        fi
 }
 
-# DATE/NTP
+echo "DATE/NTP"
 rm -fr /etc/localtime || die "Unable to remove /etc/localtime"
 curl -s -q -L "${LOCALTIME_URL}" --output /etc/localtime || die "Unable to download CET from github"
 ntpdate -b time.ien.it > /dev/null 2>&1
 hwclock -w || die "Unable to synch the time (hwclock)"
 
-# CLEAN THE DISK
+echo "PREP THE DISK"
 dd if=/dev/zero of="${DISK}" bs=512 count=1 conv=notrunc > /dev/null 2>&1 || die "Unable to erase the disk with dd"
 
 cd /tmp/
 curl -s -q -L "${PARTED_URL}" --output parted.txt || die "Unable to download parted.txt from github"
 sed "s:CHANGEME:${DISK}:" -i parted.txt || die "Unable to sed on parted.txt"
-parted -a optimal < ./parted.txt > /dev/null 2>&1 || die "Unable to run parted"
+parted -a optimal < ./parted.txt >> ${LOG_FILE} 2>&1 || die
+
+echo "MAKE FILESYSTEMS"
 mkfs.ext4 -F "${BOOT}" > /dev/null 2>&1 || die "Unable to run mkfs.ext4 on BOOT partition"
-mkfs.ext4 -F "${ROOT}" > /dev/null 2>&1 || die "Unable to run mkfs.ext4 on ROOT partition"
+mkfs ${ROOTFS_MKFS_COMMAND}   "${ROOT}" 2>&1 || die "Unable to run mkfs on ROOT partition"
 mkdir -p "${MOUNTPOINT}" || die "Unable to mkdir the MOUNTPOINT for the ROOT partition"
 mount "${ROOT}" "${MOUNTPOINT}" || die "Unable to mount the ROOT partition on its MOUNTPOINT"
 mkdir -p "${MOUNTPOINT}"/boot || die "Unable to mkdir the MOUNTPOINT for the BOOT partition"
 mount "${BOOT}" "${MOUNTPOINT}"/boot || die "Unable to mount the BOOT partition on its MOUNTPOINT"
 cd "${MOUNTPOINT}" || die "Unable to cd the MOUNTPOINT"
+
 echo "DOWNLOAD IN PROGRESS..."
 curl -s -q -L "${STAGE4_URL}" --output stage4.tar.xz || die "Unable to download the stage4 archive"
-echo "DOWNLOAD DONE..."
 echo "MD5SUM CHECK IN PROGRESS..."
 CURRENT_MD5SUM="$( md5sum stage4.tar.xz | awk '{print $1}' )"
 if [ "${CURRENT_MD5SUM}" != "${MD5SUM}" ]
@@ -80,6 +85,7 @@ then
 	echo "The expected md5sum of the archive is: ${MD5SUM}"
 	die
 fi
+
 echo "MD5SUM CHECK DONE..."
 echo "DECOMPRESSION IN PROGRESS..."
 tar -xJpf stage4.tar.xz || die "Unable to decompress the stage4 archive"
@@ -95,7 +101,7 @@ sed "s:ROOT:${ROOT}:" -i etc/fstab etc/default/grub || die "Unable to replace RO
 sed '/EFI/d' -i etc/fstab || die "Unable to replace EFI in fstab"
 ####
 
-#### NETWORK ####
+echo "NETWORK SETUP"
 IP_ADDRESS="$( ifconfig eth0 | grep "inet " | awk '{print $2}' )"
 NETMASK="$( ifconfig eth0 | grep "inet " | awk '{print $4}' )"
 BROADCAST="$( ifconfig eth0 | grep "inet " | awk '{print $6}' )"
@@ -111,30 +117,45 @@ routes_eth0="172.31.1.1 scope link
 default via 172.31.1.1"
 EOF
 
+
 mkdir dev proc run sys tmp > /dev/null 2>&1 || die "Unable to mkdir 'dev proc run sys tmp'"
 mount -t proc proc "${MOUNTPOINT}"/proc || die "Unable to mount /proc"
 mount --rbind /sys "${MOUNTPOINT}"/sys || die "Unable to mount /sys"
 mount --rbind /dev "${MOUNTPOINT}"/dev || die "Unable to mount /dev"
 
-# KERNEL
+
+echo "KERNEL"
 rm -fr "${MOUNTPOINT}"/boot/*gentoo-sources-image* "${MOUNTPOINT}"/lib/modules/* || die "Unable to remove the gentoo-sources-image kernel"
 
-# CHROOT COMMANDS
+echo "CHROOT COMMANDS"
 export DISK="${DISK}"
 
 echo -ne "\n\nGRUB:\n"
+
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-install $DISK' || die "Unable to run grub-install"
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" grub-mkconfig -o /boot/grub/grub.cfg' || die "Unable to run grub-mkconfig"
 chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" rc-update add net.eth0 default' > /dev/null 2>&1 || die "Unable to run rc-update"
-chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" echo "root:ChangeMe1999" | chpasswd' || die "Unable to run chpasswd"
+echo "root:{$ROOT_PASSWORD}" | chroot "${MOUNTPOINT}" /bin/bash -c 'PATH="/usr/sbin:/usr/bin:/sbin:/bin" chpasswd' >> ${LOG_FILE} || die "Unable to run chpasswd"
+
 
 rm -fr root/.ssh/authorized_keys || die "Unable to remove authorized_keys"
 
 if [ -f "${INITIAL_PWD}"/id_rsa.pub ]
 then
-	cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die "Unable to copy authorized_keys"
+        echo "Copying public key from id_rsa.pub to target"
+        cp "${INITIAL_PWD}"/id_rsa.pub root/.ssh/authorized_keys || die "Unable to copy pubkey to authorized_keys"
+else
+        if [ -f "${INITIAL_PWD}"/.ssh/authorized_keys ]
+        then
+            echo "Copying authorized keys to target"
+            cp "${INITIAL_PWD}"/.ssh/authorized_keys root/.ssh/authorized_keys || die "Unable to copy authorized_keys"
+        else
+            echo "No ssh keys found, you will have to set it up manually"
+        fi        
 fi
 
 echo -ne "LSPCI -k:\n$( lspci -k | grep "Kernel\ driver" | sort | uniq )\n\nLSMOD:\n$( lsmod )\n" > "${MOUNTPOINT}"/root/.modules_info || die "Unable to write .modules_info"
 
+
+echo "Your root password was set to ${ROOT_PASSWORD} "
 echo -ne "\n\n\nTHE STAGE4 INSTALLATION HAS BEEN COMPLETED....HAVE A NICE DAY ;)\n"
