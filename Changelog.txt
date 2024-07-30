@@ -1,4 +1,85 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (08 May 2024)
+
+MD5SUM:
+stage4-hardened-20240508.tar.xz 680c9171f81103bf8a42c70bbe04d6ba
+stage4-standard-20240508.tar.xz 7e11f5551c38e19156a6c3f78ddd45de
+
+CHANGES:
+- glibc update from 2.37-r3 to 2.38-r13
+- gcc update from -12.3.1_p20230526 to 13.2.1_p20240210
+- binutils update from 2.40-r5 to 2.41-r5
+- kernel update from 4.19.235 to 5.10.212
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 13.2.1 20240210 (Gentoo 13.2.1_p20240210 p14)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.38-r13 (patchset 13)) 2.38
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.41 p5) 2.41.0
+kernel-gentoo-5.10.212
+
+#############################################################################
+
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (19 Sep 2023)
+
+MD5SUM:
+stage4-hardened-20230919.tar.xz 8bd9f22d52a0a5a3d36298ba14cc935c
+stage4-standard-20230919.tar.xz 9c56f841851c6d988a91ac3fd766cc9d
+
+CHANGES:
+- glibc update from 2.36-r7 2.37-r3
+- gcc update from 12.2.1_p20230428-r1 to 12.3.1_p20230526
+- binutils update from 2.39-r5 2.40-r5
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 12.3.1 20230526 (Gentoo 12.3.1_p20230526 p2)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.37-r3 (patchset 5)) 2.37
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.40 p5) 2.40.0
+kernel-4.19.235-gentoo
+
+#############################################################################
+
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (05 May 2023)
+
+MD5SUM:
+stage4-hardened-20230505.tar.xz cafe73489c4ef5719004546f92d81f32
+stage4-standard-20230505.tar.xz a6f1d0c2c066eb00cb69df6cfcc856de
+
+CHANGES:
+- glibc update from 2.36-r5 to 2.36-r7
+- gcc update from 12.2.1_p20230121-r1 to 12.2.1_p20230428-r1
+- binutils update from 2.39-r4 to 2.39-r5
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 12.2.1 20230428 (Gentoo 12.2.1_p20230428-r1 p2)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.36-r7 p9) 2.36
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.39 p6) 2.39.0
+kernel-4.19.235-gentoo
+
+#############################################################################
+
+#############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (06 Feb 2023)
+
+MD5SUM:
+stage4-hardened-20230206.tar.xz 7989396c3bcf01c3ed9b8f8098b77b82
+stage4-standard-20230206.tar.xz 946222a905617afd9238442370b9a7f0
+
+CHANGES:
+- glibc update from 2.35-r8 to 2.36-r5
+- gcc update from 11.3.0 to 12.2.1_p20230121-r1
+- binutils update from 2.38-r2 to 2.39-r4
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 12.2.1 20230121 (Gentoo 12.2.1_p20230121-r1 p10)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.36-r5 p5) 2.36
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.39 p5) 2.39.0
+kernel-4.19.235-gentoo
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (17 Oct 2022)
 
 MD5SUM:
