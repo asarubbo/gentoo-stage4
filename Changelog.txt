@@ -1,4 +1,31 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (01 Oct 2024)
+
+MD5SUM:
+stage4-hardened-20241001.tar.xz 63266408b5d7125e34d9c5797ceec01d
+stage4-standard-20241001.tar.xz d5cfa1070a0c680a5f58010120ac3585
+
+MAJOR CHANGES:
+- Enhanced kernel security by enabling all KSPP modules that do not have an
+  impact on performance, like UBSAN
+- profile update from 17.1 to 23.0
+- gentoo-sources-image replaced with sys-kernel/gentoo-kernel-bin
+
+CHANGES:
+- glibc update from to 2.38-r13 to 2.39-r6
+- gcc update from 13.2.1_p20240210 to 13.3.1_p20240614
+- binutils update from 2.41-r5 to 2.42-r1
+- kernel update from 5.10.212 to 6.1.111
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 13.3.1 20240614 (Gentoo 13.3.1_p20240614 p1)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.39-r6 (patchset 6)) 2.39
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.42 p3) 2.42.0
+kernel-gentoo-6.1.111
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (08 May 2024)
 
 MD5SUM:
@@ -7,7 +34,7 @@ stage4-standard-20240508.tar.xz 7e11f5551c38e19156a6c3f78ddd45de
 
 CHANGES:
 - glibc update from 2.37-r3 to 2.38-r13
-- gcc update from -12.3.1_p20230526 to 13.2.1_p20240210
+- gcc update from 12.3.1_p20230526 to 13.2.1_p20240210
 - binutils update from 2.40-r5 to 2.41-r5
 - kernel update from 4.19.235 to 5.10.212
 

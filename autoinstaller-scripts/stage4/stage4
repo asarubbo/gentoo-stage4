@@ -10,8 +10,8 @@ GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 #TYPE="uefi"
 #TYPE="bios"
 
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20240508.tar.xz" ; MD5SUM="680c9171f81103bf8a42c70bbe04d6ba"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20240508.tar.xz" ; MD5SUM="7e11f5551c38e19156a6c3f78ddd45de"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20241001.tar.xz" ; MD5SUM="63266408b5d7125e34d9c5797ceec01d"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20241001.tar.xz" ; MD5SUM="d5cfa1070a0c680a5f58010120ac3585"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -25,7 +25,7 @@ MOUNTPOINT="/mnt/gentoo"
 INITIAL_PWD="$( pwd )"
 NPROC="$( nproc )"
 
-echo -ne "\nBefore to run this script you need to configure the basics in the script itself\n\nThis script will COMPLETELY erase your disk ${DISK} (see line 64)\n"
+echo -ne "\nBefore to run this script you need to configure the basics in the script itself\n\nThis script will COMPLETELY erase your disk ${DISK} (see line 65)\n"
 read -r -p "Are you sure? [y/N] " RESPONSE
 RESPONSE=${RESPONSE,,}
 if [[ ! "$RESPONSE" =~ ^(yes|y)$ ]]

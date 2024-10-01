@@ -7,8 +7,8 @@ clear
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 
 ####### USER CONFIGS
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20240508.tar.xz" ; MD5SUM="680c9171f81103bf8a42c70bbe04d6ba"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20240508.tar.xz" ; MD5SUM="7e11f5551c38e19156a6c3f78ddd45de"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20241001.tar.xz" ; MD5SUM="63266408b5d7125e34d9c5797ceec01d"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20241001.tar.xz" ; MD5SUM="d5cfa1070a0c680a5f58010120ac3585"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
@@ -117,7 +117,7 @@ mount --rbind /sys "${MOUNTPOINT}"/sys || die "Unable to mount /sys"
 mount --rbind /dev "${MOUNTPOINT}"/dev || die "Unable to mount /dev"
 
 # KERNEL
-rm -fr "${MOUNTPOINT}"/boot/*gentoo-sources-image* "${MOUNTPOINT}"/lib/modules/* || die "Unable to remove the gentoo-sources-image kernel"
+rm -fr "${MOUNTPOINT}"/boot/*gentoo-dist* "${MOUNTPOINT}"/lib/modules/*gentoo-dist* || die "Unable to remove the 'gentoo-kernel-bin' kernel"
 
 # CHROOT COMMANDS
 export DISK="${DISK}"
