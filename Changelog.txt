@@ -9,6 +9,7 @@ CHANGES:
 - glibc update from 2.39-r6 to 2.40-r8
 - gcc update from 13.3.1_p20240614 to 14.2.1_p20241221
 - binutils update from 2.42-r1 to 2.43-r2
+- update PYTHON_TARGETS to 3.12
 
 TOOLCHAIN/KERNEL VERSIONS:
 sys-devel/gcc (gcc -v): gcc version 14.2.1 20241221 (Gentoo 14.2.1_p20241221 p7)
