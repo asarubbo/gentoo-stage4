@@ -7,8 +7,8 @@ clear
 GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 
 ####### USER CONFIGS
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20250203.tar.xz" ; MD5SUM="493301bcb770c6f2d0c4e1aa2e6c0648"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20250203.tar.xz" ; MD5SUM="b6e954fc386d6f9a1ac59f9a47627717"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20250408.tar.xz" ; MD5SUM="816240ae1005f0c260d46fa3220bf013"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20250408.tar.xz" ; MD5SUM="3e8fe38c1da311f5e2f2784b9806d8b9"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
