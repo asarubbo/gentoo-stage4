@@ -10,8 +10,8 @@ GITHUB="https://github.com/asarubbo/gentoo-stage4/raw/master"
 #TYPE="uefi"
 #TYPE="bios"
 
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20250408.tar.xz" ; MD5SUM="816240ae1005f0c260d46fa3220bf013"
-#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20250408.tar.xz" ; MD5SUM="3e8fe38c1da311f5e2f2784b9806d8b9"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-hardened-20250930.tar.xz" ; MD5SUM="e3ba459a10a615e8dbfc842528c6f6cd"
+#STAGE4_URL="https://dev.gentoo.org/~ago/stage4/stage4-standard-20250930.tar.xz" ; MD5SUM="93dfceaa31f66ddc7718653359fce812"
 
 DISK="/dev/sda"
 ESP="/dev/sda1"
