@@ -1,4 +1,25 @@
 #############################################################################
+# Agostino Sarubbo <ago@gentoo.org> (30 Oct 2026)
+
+MD5SUM:
+stage4-hardened-20261030.tar.xz dc98a0d1372e53892d13c3c2ce02fecd
+stage4-standard-20261030.tar.xz 6c5f8ed34fd8d3b73bc125bc8a19de7b
+
+CHANGES:
+- glibc update from 2.42-r5 to 2.43-r4
+- gcc update from 15.2.1_p20260214 to 16.2.1_p20260926
+- binutils update from 2.46.0 to 2.47
+- kernel update from 6.1.163 to 6.1.190
+
+TOOLCHAIN/KERNEL VERSIONS:
+sys-devel/gcc (gcc -v): gcc version 16.2.1 20260926 (Gentoo 16.2.1_p20260926 p1)
+sys-libs/glibc (ldd --version): ldd (Gentoo 2.43-r4 (patchset 5)) 2.43
+sys-devel/binutils (ld -v): GNU ld (Gentoo 2.47 p1) 2.47.0
+kernel-gentoo-6.1.190
+
+#############################################################################
+
+#############################################################################
 # Agostino Sarubbo <ago@gentoo.org> (10 Mar 2026)
 
 MD5SUM:
